@@ -1,21 +1,26 @@
-import { Circle, Layer, Rect, Stage } from 'react-konva';
+import { Arrow, Circle, Layer, Line, Rect, Stage, Transformer } from 'react-konva';
 import { useRef, useState } from 'react';
 import Konva from 'konva';
 import { nanoid } from 'nanoid';
 import { ActionButton } from './components/ActionButton';
 import { ActionNav } from './components/ActionNav';
-import { ActionType, CircleType, ReactangleType } from './types';
+import { ActionType, ArrowType, CircleType, ReactangleType, ScribbleType } from './types';
+import { ColorPicker } from './components/ColorPicker';
 
 function App() {
 	const stageRef = useRef<Konva.Stage>(null);
 	const [action, setAction] = useState<ActionType>(ActionType.Select);
 	const [rectangles, setRectangles] = useState<ReactangleType[]>([]);
 	const [circles, setCircles] = useState<CircleType[]>([]);
+	const [arrows, setArrows] = useState<ArrowType[]>([]);
+	const [scribbles, setScribbles] = useState<ScribbleType[]>([]);
+
 	const [fillColor, setFillColor] = useState('#ff0000');
 
 	const isDraggable = action === ActionType.Select;
 	const isPainting = useRef<boolean>();
 	const currentShapeId = useRef<string>();
+	const transformerRef = useRef<Konva.Transformer>(null);
 
 	const onPointerDown = () => {
 		if (action === ActionType.Select) return;
@@ -51,6 +56,26 @@ function App() {
 						x,
 						y,
 						radius: 20,
+						fill: fillColor
+					}
+				]);
+				break;
+			case ActionType.Arrow:
+				setArrows((arrows) => [
+					...arrows,
+					{
+						id,
+						points: [x, y, x + 20, y + 20],
+						fill: fillColor
+					}
+				]);
+				break;
+			case ActionType.Scribble:
+				setScribbles((scribbles) => [
+					...scribbles,
+					{
+						id,
+						points: [x, y],
 						fill: fillColor
 					}
 				]);
@@ -91,24 +116,56 @@ function App() {
 					})
 				);
 				break;
+			case ActionType.Arrow:
+				setArrows((arrows) =>
+					arrows.map((arrow) => {
+						if (arrow.id === currentShapeId.current) {
+							return {
+								...arrow,
+								points: [arrow.points[0], arrow.points[1], x, y]
+							};
+						}
+						return arrow;
+					})
+				);
+				break;
+			case ActionType.Scribble:
+				setScribbles((scribbles) =>
+					scribbles.map((scribble) => {
+						if (scribble.id === currentShapeId.current) {
+							return {
+								...scribble,
+								points: [...scribble.points, x, y]
+							};
+						}
+						return scribble;
+					})
+				);
+				break;
 		}
 	};
 	const onPointerUp = () => {
 		isPainting.current = false;
 	};
 
+	const onElementClick = (evt: Konva.KonvaEventObject<MouseEvent>) => {
+		if (action !== ActionType.Select) return;
+
+		const target = evt.currentTarget;
+		transformerRef.current?.nodes([target]);
+	};
+
 	return (
 		<div className="relative w-full h-screen overflow-hidden">
 			<div className="absolute top-0 z-10 w-full py-2">
 				<ActionNav>
-					<ActionButton currentAction={action} setAction={setAction} actionType={ActionType.Select} />
-					<ActionButton currentAction={action} setAction={setAction} actionType={ActionType.Reactangle} />
-					<ActionButton currentAction={action} setAction={setAction} actionType={ActionType.Circle} />
-					<button>
-						<input className="w-6 h-6" type="color" value={fillColor} onChange={(e) => setFillColor(e.target.value)} />
-					</button>
+					{Object.values(ActionType).map((type) => (
+						<ActionButton key={type} currentAction={action} setAction={setAction} actionType={type} />
+					))}
+					<ColorPicker fillColor={fillColor} setFillColor={setFillColor} />
 				</ActionNav>
 			</div>
+
 			<Stage
 				ref={stageRef}
 				width={window.innerWidth}
@@ -117,7 +174,17 @@ function App() {
 				onPointerMove={onPointerMove}
 				onPointerUp={onPointerUp}>
 				<Layer>
-					<Rect x={0} y={0} height={window.innerHeight} width={window.innerWidth} fill={'#ffffff'} id="bg" />
+					<Rect
+						x={0}
+						y={0}
+						height={window.innerHeight}
+						width={window.innerWidth}
+						fill={'#ffffff'}
+						id="bg"
+						onClick={() => {
+							transformerRef.current?.nodes([]);
+						}}
+					/>
 					{rectangles.map((rectangle) => (
 						<Rect
 							key={rectangle.id}
@@ -129,6 +196,7 @@ function App() {
 							height={rectangle.height}
 							width={rectangle.width}
 							draggable={isDraggable}
+							onClick={onElementClick}
 						/>
 					))}
 					{circles.map((circle) => (
@@ -141,8 +209,36 @@ function App() {
 							strokeWidth={2}
 							fill={circle.fill}
 							draggable={isDraggable}
+							onClick={onElementClick}
 						/>
 					))}
+					{arrows.map((arrow) => (
+						<Arrow
+							key={arrow.id}
+							points={arrow.points}
+							stroke={'#000000'}
+							strokeWidth={2}
+							fill={arrow.fill}
+							draggable={isDraggable}
+							onClick={onElementClick}
+						/>
+					))}
+
+					{scribbles.map((scribble) => (
+						<Line
+							key={scribble.id}
+							lineCap="round"
+							lineJoin="round"
+							points={scribble.points}
+							stroke={'#000000'}
+							strokeWidth={2}
+							fill={scribble.fill}
+							draggable={isDraggable}
+							onClick={onElementClick}
+						/>
+					))}
+
+					<Transformer ref={transformerRef} />
 				</Layer>
 			</Stage>
 		</div>

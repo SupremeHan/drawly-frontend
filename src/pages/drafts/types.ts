@@ -6,21 +6,28 @@ export enum ActionType {
 	Arrow = 'Arrow'
 }
 
-export interface ReactangleType {
+interface BaseShapeType {
 	id: string;
 	x: number;
 	y: number;
+	fill: string;
+}
+
+export interface ReactangleType extends BaseShapeType {
 	stroke: string;
 	strokeWidth: number;
-	fill: string;
 	height: number;
 	width: number;
 }
 
-export interface CircleType {
-	id: string;
-	x: number;
-	y: number;
+export interface CircleType extends BaseShapeType {
 	radius: number;
-	fill: string;
+}
+
+export interface ArrowType extends Omit<BaseShapeType, 'x' | 'y'> {
+	points: [number, number, number, number];
+}
+
+export interface ScribbleType extends Omit<BaseShapeType, 'x' | 'y'> {
+	points: number[];
 }

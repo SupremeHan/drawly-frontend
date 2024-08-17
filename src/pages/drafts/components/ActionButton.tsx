@@ -1,7 +1,8 @@
 import { GiArrowCursor } from 'react-icons/gi';
 import { TbRectangle } from 'react-icons/tb';
 import { ActionType } from '../types';
-import { FaRegCircle } from 'react-icons/fa';
+import { FaLongArrowAltRight, FaRegCircle } from 'react-icons/fa';
+import { LuPencil } from 'react-icons/lu';
 
 interface ActionButtonProps {
 	actionType: ActionType;
@@ -10,14 +11,22 @@ interface ActionButtonProps {
 }
 
 export function ActionButton({ currentAction, actionType, setAction }: ActionButtonProps) {
+	const ICON_SIZE = '1.5rem';
+
 	const renderIcon = () => {
 		switch (actionType) {
 			case ActionType.Select:
-				return <GiArrowCursor size={'1.5rem'} />;
+				return <GiArrowCursor size={ICON_SIZE} />;
 			case ActionType.Reactangle:
-				return <TbRectangle size={'1.5rem'} />;
+				return <TbRectangle size={ICON_SIZE} />;
 			case ActionType.Circle:
-				return <FaRegCircle size={'1.5rem'} />;
+				return <FaRegCircle size={ICON_SIZE} />;
+			case ActionType.Arrow:
+				return <FaLongArrowAltRight size={ICON_SIZE} />;
+			case ActionType.Scribble:
+				return <LuPencil size={ICON_SIZE} />;
+			default:
+				throw new Error(`Action type ${actionType} not implemented yet`);
 		}
 	};
 
