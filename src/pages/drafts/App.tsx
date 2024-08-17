@@ -1,36 +1,19 @@
-import { Layer, Rect, Stage } from 'react-konva';
-import './App.css';
-import { GiArrowCursor } from 'react-icons/gi';
-import { TbRectangle } from 'react-icons/tb';
+import { Circle, Layer, Rect, Stage } from 'react-konva';
 import { useRef, useState } from 'react';
 import Konva from 'konva';
-import { v4 as uuidv4 } from 'uuid';
-
-enum ActionType {
-	Select = 'Select',
-	Reactangle = 'Reactangle',
-	Circle = 'Circle',
-	Scribble = 'Scribble',
-	Arrow = 'Arrow'
-}
-
-interface Reactangle {
-	id: string;
-	x: number;
-	y: number;
-	stroke: string;
-	strokeWidth: number;
-	fill: string;
-	height: number;
-	width: number;
-}
+import { nanoid } from 'nanoid';
+import { ActionButton } from './components/ActionButton';
+import { ActionNav } from './components/ActionNav';
+import { ActionType, CircleType, ReactangleType } from './types';
 
 function App() {
 	const stageRef = useRef<Konva.Stage>(null);
 	const [action, setAction] = useState<ActionType>(ActionType.Select);
-	const [rectangles, setRectangles] = useState<Reactangle[]>([]);
+	const [rectangles, setRectangles] = useState<ReactangleType[]>([]);
+	const [circles, setCircles] = useState<CircleType[]>([]);
 	const [fillColor, setFillColor] = useState('#ff0000');
 
+	const isDraggable = action === ActionType.Select;
 	const isPainting = useRef<boolean>();
 	const currentShapeId = useRef<string>();
 
@@ -39,7 +22,7 @@ function App() {
 
 		const stage = stageRef.current?.getPointerPosition();
 		const { x, y } = stage!; //To keep the TypeScript happy :)
-		const id = uuidv4();
+		const id = nanoid();
 
 		currentShapeId.current = id;
 		isPainting.current = true;
@@ -57,6 +40,18 @@ function App() {
 						fill: fillColor,
 						stroke: '#000000',
 						strokeWidth: 2
+					}
+				]);
+				break;
+			case ActionType.Circle:
+				setCircles((prevVal) => [
+					...prevVal,
+					{
+						id,
+						x,
+						y,
+						radius: 20,
+						fill: fillColor
 					}
 				]);
 				break;
@@ -83,6 +78,19 @@ function App() {
 					})
 				);
 				break;
+			case ActionType.Circle:
+				setCircles((circles) =>
+					circles.map((circle) => {
+						if (circle.id === currentShapeId.current) {
+							return {
+								...circle,
+								radius: ((y - circle.y) ** 2 + (x - circle.x) ** 2) ** 0.5
+							};
+						}
+						return circle;
+					})
+				);
+				break;
 		}
 	};
 	const onPointerUp = () => {
@@ -92,21 +100,14 @@ function App() {
 	return (
 		<div className="relative w-full h-screen overflow-hidden">
 			<div className="absolute top-0 z-10 w-full py-2">
-				<div className="flex justify-center items-center gap-3 py-2 px-3 w-fit mx-auto border">
-					<button
-						onClick={() => setAction(ActionType.Select)}
-						className={action === ActionType.Select ? 'bg-violet-300 p-1 rounded' : 'p-1 hover:bg-violet-100 rounded'}>
-						<GiArrowCursor size={'1.5rem'} />
-					</button>
-					<button
-						onClick={() => setAction(ActionType.Reactangle)}
-						className={action === ActionType.Reactangle ? 'bg-violet-300 p-1 rounded' : 'p-1 hover:bg-violet-100 rounded'}>
-						<TbRectangle size={'1.5rem'} />
-					</button>
+				<ActionNav>
+					<ActionButton currentAction={action} setAction={setAction} actionType={ActionType.Select} />
+					<ActionButton currentAction={action} setAction={setAction} actionType={ActionType.Reactangle} />
+					<ActionButton currentAction={action} setAction={setAction} actionType={ActionType.Circle} />
 					<button>
 						<input className="w-6 h-6" type="color" value={fillColor} onChange={(e) => setFillColor(e.target.value)} />
 					</button>
-				</div>
+				</ActionNav>
 			</div>
 			<Stage
 				ref={stageRef}
@@ -127,6 +128,19 @@ function App() {
 							fill={rectangle.fill}
 							height={rectangle.height}
 							width={rectangle.width}
+							draggable={isDraggable}
+						/>
+					))}
+					{circles.map((circle) => (
+						<Circle
+							key={circle.id}
+							radius={circle.radius}
+							x={circle.x}
+							y={circle.y}
+							stroke={'#000000'}
+							strokeWidth={2}
+							fill={circle.fill}
+							draggable={isDraggable}
 						/>
 					))}
 				</Layer>

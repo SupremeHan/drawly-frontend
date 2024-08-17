@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import LandingPage from '../pages/LandingPage';
 import AuthPage from '../pages/auth/AuthPage';
 import GoogleOAuthSuccessRedirect from '../pages/auth/GoogleOAuth';
-import App from '../App';
+import App from '../pages/drafts/App';
 import { ProtectedRoute } from './ProtectedRoute';
 
 export const router = createBrowserRouter([
