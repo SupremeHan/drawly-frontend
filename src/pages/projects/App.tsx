@@ -17,6 +17,7 @@ function App() {
 
 	const [fillColor, setFillColor] = useState('#ff0000');
 
+	const strokeColor = '#000000';
 	const isDraggable = action === ActionType.Select;
 	const isPainting = useRef<boolean>();
 	const currentShapeId = useRef<string>();
@@ -43,7 +44,7 @@ function App() {
 						height: 20,
 						width: 20,
 						fill: fillColor,
-						stroke: '#000000',
+						stroke: strokeColor,
 						strokeWidth: 2
 					}
 				]);
@@ -190,7 +191,7 @@ function App() {
 							key={rectangle.id}
 							x={rectangle.x}
 							y={rectangle.y}
-							stroke={'#000000'}
+							stroke={strokeColor}
 							strokeWidth={2}
 							fill={rectangle.fill}
 							height={rectangle.height}
@@ -205,7 +206,7 @@ function App() {
 							radius={circle.radius}
 							x={circle.x}
 							y={circle.y}
-							stroke={'#000000'}
+							stroke={strokeColor}
 							strokeWidth={2}
 							fill={circle.fill}
 							draggable={isDraggable}
@@ -216,7 +217,7 @@ function App() {
 						<Arrow
 							key={arrow.id}
 							points={arrow.points}
-							stroke={'#000000'}
+							stroke={strokeColor}
 							strokeWidth={2}
 							fill={arrow.fill}
 							draggable={isDraggable}
@@ -230,7 +231,7 @@ function App() {
 							lineCap="round"
 							lineJoin="round"
 							points={scribble.points}
-							stroke={'#000000'}
+							stroke={strokeColor}
 							strokeWidth={2}
 							fill={scribble.fill}
 							draggable={isDraggable}

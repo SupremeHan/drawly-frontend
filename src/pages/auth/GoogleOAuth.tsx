@@ -17,7 +17,7 @@ export default function GoogleOAuthSuccessRedirect() {
 			}
 		}
 
-		navigate('/drafts');
+		navigate('/projects');
 	}, []);
 
 	return <div>Logging in...</div>;
