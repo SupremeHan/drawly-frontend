@@ -2,12 +2,12 @@ import { Arrow, Circle, Layer, Line, Rect, Stage, Transformer } from 'react-konv
 import { useRef, useState } from 'react';
 import Konva from 'konva';
 import { nanoid } from 'nanoid';
-import { ActionButton } from './components/ActionButton';
-import { ActionNav } from './components/ActionNav';
+import { ActionButton } from '../components/ActionButton';
+import { ActionNav } from '../components/ActionNav';
 import { ActionType, ArrowType, CircleType, ReactangleType, ScribbleType } from './types';
-import { ColorPicker } from './components/ColorPicker';
+import { ColorPicker } from '../components/ColorPicker';
 
-function App() {
+export function Drawly() {
 	const stageRef = useRef<Konva.Stage>(null);
 	const [action, setAction] = useState<ActionType>(ActionType.Select);
 	const [rectangles, setRectangles] = useState<ReactangleType[]>([]);
@@ -157,7 +157,7 @@ function App() {
 	};
 
 	return (
-		<div className="relative w-full h-screen overflow-hidden">
+		<div className="relative overflow-hidden">
 			<div className="absolute top-0 z-10 w-full py-2">
 				<ActionNav>
 					{Object.values(ActionType).map((type) => (
@@ -173,7 +173,8 @@ function App() {
 				height={window.innerHeight}
 				onPointerDown={onPointerDown}
 				onPointerMove={onPointerMove}
-				onPointerUp={onPointerUp}>
+				onPointerUp={onPointerUp}
+				className={'h-[calc(100dvh-50px)]'}>
 				<Layer>
 					<Rect
 						x={0}
@@ -245,5 +246,3 @@ function App() {
 		</div>
 	);
 }
-
-export default App;

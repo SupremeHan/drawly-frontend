@@ -1,10 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { ProtectedRoute } from './ProtectedRoute';
+
+// pages
 import LandingPage from '../pages/landing/LandingPage';
 import AuthPage from '../pages/auth/AuthPage';
 import GoogleOAuthSuccessRedirect from '../pages/auth/GoogleOAuth';
-import App from '../pages/projects/App';
-import { ProtectedRoute } from './ProtectedRoute';
-import { Dashboard } from '../pages/dashboard/Dashboard';
+import ProjectsPage from '../pages/projects/ProjectsPage';
+import DrawlyPage from '../pages/drawly/DrawlyPage';
+import DrawlyLayout from '../pages/drawly/components/DrawlyLayout';
 
 export const router = createBrowserRouter([
 	{
@@ -19,20 +22,23 @@ export const router = createBrowserRouter([
 		path: 'auth/google-oauth-success-redirect',
 		element: <GoogleOAuthSuccessRedirect />
 	},
+
 	{
 		path: 'projects',
 		element: (
 			<ProtectedRoute>
-				<App />
+				<DrawlyLayout />
 			</ProtectedRoute>
-		)
-	},
-	{
-		path: 'dashboard',
-		element: (
-			<ProtectedRoute>
-				<Dashboard />
-			</ProtectedRoute>
-		)
+		),
+		children: [
+			{
+				path: '',
+				element: <ProjectsPage />
+			},
+			{
+				path: ':projectId',
+				element: <DrawlyPage />
+			}
+		]
 	}
 ]);

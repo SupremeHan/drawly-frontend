@@ -1,6 +1,6 @@
 import { GiArrowCursor } from 'react-icons/gi';
 import { TbRectangle } from 'react-icons/tb';
-import { ActionType } from '../types';
+import { ActionType } from '../drawly-app/types';
 import { FaLongArrowAltRight, FaRegCircle } from 'react-icons/fa';
 import { LuPencil } from 'react-icons/lu';
 
