@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import environment from '@/enviroment';
+import axiosConfig from '../../../config/axios';
 import { useAuthState } from '@/pages/auth/state/state';
-import axios from 'axios';
 import { useState } from 'react';
 import { ProjectType } from '../ProjectsPage';
+import { toast } from 'sonner';
 
 interface ProjectFormProps {
   onSubmitCb?: () => void;
@@ -26,16 +26,24 @@ export function ProjectForm({ onSubmitCb, setProjects }: ProjectFormProps) {
 
     if (!name) return; // TODO Handle error message
 
-    axios
-      .post(`${environment.apiUrl}/projects/`, {
+    axiosConfig
+      .post(`/projects/`, {
         userId: user?.id,
         projectName: name,
       })
       .then((res) => {
         setProjects((prevVal) => [...prevVal, res.data]);
         onSubmitCb?.();
+        toast.success('Project added', {
+          duration: 2000,
+        });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        toast.error('Project was not succesfully added', {
+          duration: 2000,
+        });
+      });
   };
   return (
     <form onSubmit={addProject} className="flex flex-col">
@@ -45,7 +53,12 @@ export function ProjectForm({ onSubmitCb, setProjects }: ProjectFormProps) {
         onChange={handleInputChange}
       />
 
-      <Button variant="default" type="submit" className="self-end mt-4">
+      <Button
+        variant="default"
+        type="submit"
+        className="self-end mt-4"
+        disabled={!name.length}
+      >
         Add
       </Button>
     </form>

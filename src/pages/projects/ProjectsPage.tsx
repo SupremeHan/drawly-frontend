@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import environment from '../../enviroment';
+import axiosConfig from '../../config/axios';
 import { useAuthState } from '../auth/state/state';
 import { ProjectCard } from './components/ProjectCard';
 import { AddProjectCard } from './components/AddProjectCard';
@@ -18,11 +17,13 @@ export default function ProjectsPage() {
   const { user } = useAuthState((state) => state);
 
   useEffect(() => {
-    axios
-      .get(`${environment.apiUrl}/projects/${user?.id}`)
-      .then((res) => setProjects(res.data as ProjectType[]))
+    axiosConfig
+      .get(`/projects/${user?.id}`)
+      .then((res) => {
+        setProjects(res.data as ProjectType[]);
+      })
       .catch((err) => console.log(err));
-  }, []);
+  }, [user?.id]);
 
   return (
     <div>
