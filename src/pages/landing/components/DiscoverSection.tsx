@@ -6,11 +6,18 @@ export function DiscoverSection() {
       id="features"
       className="w-full py-12 md:py-24 lg:py-32 bg-white bg-opacity-80 backdrop-blur-md"
     >
-      <div className="container px-4 md:px-6">
+      <div className="flex flex-col items-center  text-center">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-blue-600">
           Discover Drawly
         </h2>
-        <div className="flex items-center  mt-10">
+        <p className="mx-auto max-w-[700px] text-gray-700 md:text-xl">
+          Drawly is a powerful SaaS platform designed to empower artists,
+          designers, and creative professionals. Our mission is to make digital
+          creation accessible and enjoyable for everyone, from beginners to
+          experts.
+        </p>
+
+        <div className="flex items-center mt-16">
           <div className="flex flex-col gap-8">
             <div className="space-y-4">
               <div className="flex items-center space-x-4">

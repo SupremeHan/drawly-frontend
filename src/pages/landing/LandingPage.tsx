@@ -1,5 +1,4 @@
 import {
-  AboutSection,
   BannerSection,
   ContactSection,
   DiscoverSection,
@@ -15,7 +14,7 @@ export default function LandingPage() {
       <main className="w-full max-w-[1024px] mx-auto">
         <HeroSection />
         <BannerSection />
-        <AboutSection />
+
         <DiscoverSection />
         <ContactSection />
       </main>

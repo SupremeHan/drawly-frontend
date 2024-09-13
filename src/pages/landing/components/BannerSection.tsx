@@ -1,6 +1,6 @@
 export function BannerSection() {
   return (
-    <section>
+    <section id="banner">
       <div className="lg:col-span-2 mt-8">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="bg-gray-200 px-4 py-2 flex items-center space-x-2">

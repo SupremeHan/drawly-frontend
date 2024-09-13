@@ -1,4 +1,3 @@
-export * from './AboutSection';
 export * from './BannerSection';
 export * from './ContactSection';
 export * from './DiscoverSection';

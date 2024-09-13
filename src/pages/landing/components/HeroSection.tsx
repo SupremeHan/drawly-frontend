@@ -28,6 +28,7 @@ export function HeroSection() {
               Start Drawing for Free
             </Button>
             <Button
+              onClick={() => navigate('#banner')}
               variant="outline"
               className="border-4 border-[#4A4A4A] text-[#4A4A4A] hover:bg-[#4A4A4A] hover:text-white font-bold py-2 px-4 rounded-full transition-all duration-300 hover:scale-105 hover:-rotate-3 shadow-lg"
             >
