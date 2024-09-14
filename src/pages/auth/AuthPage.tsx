@@ -7,13 +7,21 @@ export default function AuthPage() {
 
   return (
     <div className="h-screen flex items-center">
-      <div className="flex flex-col justify-around items-center w-[350px] h-[400px] m-auto border border-[#4285F4] rounded-md">
-        <div className="flex flex-col items-center">
-          <h1 className="font-bold text-3xl">Welcome to Drawly</h1>
-          <p className="text-lg">Create an account</p>
+      <div className="flex flex-col justify-around items-center w-[350px] h-[400px] m-auto border-2 border-[#4A4A4A] rounded-md">
+        <div className="flex flex-col items-center gap-4">
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/artbreeder-image-2024-09-13T12_44_10.357Z-oXbGddE3ZDjVmyNN6wjF8hZohBkyvF.png"
+            alt="Drawly Logo"
+            width={80}
+            height={80}
+          />
+          <h1 className="font-bold text-3xl text-[#FF9F1C]">
+            Welcome to Drawly
+          </h1>
+          <p className="text-lg text-[#4A4A4A]">Create an account</p>
         </div>
         <button
-          className="text-white w-[250px] bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between"
+          className="text-white w-[250px] bg-[#4A4A4A] hover:bg-[#4A4A4A]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between"
           onClick={onGoolgeLogin}
         >
           <svg

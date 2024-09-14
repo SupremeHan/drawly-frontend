@@ -8,8 +8,8 @@ export function Navbar() {
           <img
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/artbreeder-image-2024-09-13T12_44_10.357Z-8mBjsYlSqoNNlKesNxrOSd5LDCINDY.png"
             alt="Drawly mascot"
-            width={80}
-            height={80}
+            width={60}
+            height={60}
             className="mr-2 transition-transform duration-300 group-hover:scale-110"
           />
           <div className="absolute -bottom-2 -right-2 bg-[#FF9F1C] text-white text-xs font-bold px-2 py-1 rounded-full transform rotate-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

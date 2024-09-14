@@ -6,6 +6,7 @@ import {
   HeroSection,
   Navbar,
 } from './components';
+import { PricingSection } from './components/PricingSection';
 
 export default function LandingPage() {
   return (
@@ -16,6 +17,7 @@ export default function LandingPage() {
         <BannerSection />
 
         <DiscoverSection />
+        <PricingSection />
         <ContactSection />
       </main>
       <Footer />

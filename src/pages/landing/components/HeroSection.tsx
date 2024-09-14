@@ -23,14 +23,14 @@ export function HeroSection() {
           <div className="space-x-4">
             <Button
               onClick={() => navigate('/auth')}
-              className="bg-[#FF9F1C] hover:bg-[#F7B267] text-white font-bold py-2 px-4 rounded-full transition-all duration-300 hover:scale-105 hover:rotate-3 shadow-lg"
+              className="bg-[#FF9F1C] hover:bg-[#F7B267] text-white font-bold py-2 px-4  transition-all duration-300 hover:scale-105 hover:rotate-3 shadow-lg"
             >
               Start Drawing for Free
             </Button>
             <Button
               onClick={() => navigate('#banner')}
               variant="outline"
-              className="border-4 border-[#4A4A4A] text-[#4A4A4A] hover:bg-[#4A4A4A] hover:text-white font-bold py-2 px-4 rounded-full transition-all duration-300 hover:scale-105 hover:-rotate-3 shadow-lg"
+              className="border-4 border-[#4A4A4A] text-[#4A4A4A] hover:bg-[#4A4A4A] hover:text-white font-bold py-2 px-4 transition-all duration-300 hover:scale-105 hover:-rotate-3 shadow-lg"
             >
               Watch Demo
             </Button>

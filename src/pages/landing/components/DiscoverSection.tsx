@@ -1,5 +1,3 @@
-import { Button } from '@/components/ui/button';
-
 export function DiscoverSection() {
   return (
     <section
@@ -7,7 +5,7 @@ export function DiscoverSection() {
       className="w-full py-12 md:py-24 lg:py-32 bg-white bg-opacity-80 backdrop-blur-md"
     >
       <div className="flex flex-col items-center  text-center">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-blue-600">
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-[#4A4A4A]">
           Discover Drawly
         </h2>
         <p className="mx-auto max-w-[700px] text-gray-700 md:text-xl">
@@ -17,13 +15,13 @@ export function DiscoverSection() {
           experts.
         </p>
 
-        <div className="flex items-center mt-16">
+        <div className="flex flex-col items-center mt-16 md:flex-row">
           <div className="flex flex-col gap-8">
             <div className="space-y-4">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+              <div className="flex items-center justify-center space-x-4">
+                <div className="w-12 h-12 border-2 border-[#4A4A4A] rounded-full flex items-center justify-center">
                   <svg
-                    className="w-6 h-6 text-blue-600"
+                    className="w-6 h-6 text-[#4A4A4A]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -37,7 +35,9 @@ export function DiscoverSection() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold">Intuitive Interface</h3>
+                <h3 className="text-xl font-bold text-[#FF9F1C]">
+                  Intuitive Interface
+                </h3>
               </div>
               <p className="text-gray-600">
                 Create stunning designs with our easy-to-use tools, perfect for
@@ -45,10 +45,10 @@ export function DiscoverSection() {
               </p>
             </div>
             <div className="space-y-4">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+              <div className="flex items-center justify-center space-x-4">
+                <div className="w-12 h-12 border-2 border-[#4A4A4A] rounded-full flex items-center justify-center">
                   <svg
-                    className="w-6 h-6 text-purple-600"
+                    className="w-6 h-6 text-[#4A4A4A]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -62,7 +62,7 @@ export function DiscoverSection() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold">Cloud Sync</h3>
+                <h3 className="text-xl font-bold text-[#FF9F1C]">Cloud Sync</h3>
               </div>
               <p className="text-gray-600">
                 Access your creations from anywhere, anytime. Your work is
@@ -70,10 +70,10 @@ export function DiscoverSection() {
               </p>
             </div>
             <div className="space-y-4">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+              <div className="flex items-center  justify-center space-x-4">
+                <div className="w-12 h-12 border-2 border-[#4A4A4A] rounded-full flex items-center justify-center">
                   <svg
-                    className="w-6 h-6 text-green-600"
+                    className="w-6 h-6 text-[#4A4A4A]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -87,33 +87,14 @@ export function DiscoverSection() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold">Collaboration</h3>
+                <h3 className="text-xl font-bold text-[#FF9F1C]">
+                  Collaboration
+                </h3>
               </div>
               <p className="text-gray-600">
                 Work together in real-time with your team, no matter where they
                 are.
               </p>
-            </div>
-          </div>
-
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-[#FF9F1C]">
-              Start for Free
-            </h2>
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold">Always Free Plan</h3>
-                <p className="text-3xl font-bold text-[#FF9F1C]">$0/month</p>
-                <ul className="text-gray-600 space-y-2">
-                  <li>Basic drawing tools</li>
-                  <li>5 projects</li>
-                  <li>1GB storage</li>
-                  <li>Community support</li>
-                </ul>
-              </div>
-              <Button className="bg-[#FF9F1C] hover:bg-blue-700 text-white">
-                Get Started Now
-              </Button>
             </div>
           </div>
         </div>

@@ -12,20 +12,20 @@ export function Footer() {
               width={30}
               height={30}
             />
-            <span className="text-blue-600 font-bold">Drawly</span>
+            <span className="text-[#FF9F1C] font-bold">Drawly</span>
           </div>
           <p className="text-sm text-gray-500">
             © 2023 Drawly. All rights reserved.
           </p>
           <nav className="flex gap-4">
             <Link
-              className="text-sm hover:underline underline-offset-4 text-gray-500 hover:text-blue-600"
+              className="text-sm hover:underline underline-offset-4 text-gray-500 hover:text-[#FF9F1C]"
               to="#"
             >
               Terms
             </Link>
             <Link
-              className="text-sm hover:underline underline-offset-4 text-gray-500 hover:text-blue-600"
+              className="text-sm hover:underline underline-offset-4 text-gray-500 hover:text-[#FF9F1C]"
               to="#"
             >
               Privacy
