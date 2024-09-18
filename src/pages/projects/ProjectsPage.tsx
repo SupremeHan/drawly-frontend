@@ -26,7 +26,7 @@ export default function ProjectsPage() {
   }, [user?.id]);
 
   return (
-    <div>
+    <div className="p-2">
       <h1 className="text-2xl font-bold mb-4 text-gray-900">Your draws</h1>
       <div className="flex flex-wrap gap-4">
         <AddProjectCard setProjects={setProjects} />

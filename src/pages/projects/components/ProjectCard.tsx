@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ProjectType } from '../ProjectsPage';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import Lightbulb from '@/lib/illustrations/Lightbulb';
 
 interface ProjectCardProps {
   project: ProjectType;
@@ -8,14 +10,18 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, userId }: ProjectCardProps) {
   return (
-    <Link
-      to={`/projects/${userId}`}
-      className="relative block max-w-[250px] p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-    >
-      <h3 className="absolute right-4 bottom-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
-        {project.name}
-      </h3>
-      <img src="https://placehold.co/250x100.png" alt="Project number one" />
+    <Link to={`/projects/${userId}`} className=" rounded-lg overflow-hidden">
+      <Card className=" block w-[280px] bg-white border-2 border-[#4A4A4A] hover:bg-gray-100">
+        <div className="relative h-40">
+          <Lightbulb className="absolute right-[-50px] top-[30px] rotate-[-45deg]" />
+
+          <CardHeader className="absolute inset-0 flex flex-col justify-between p-4">
+            <CardTitle>
+              <span className="font-bold text-lg">{project.name}</span>
+            </CardTitle>
+          </CardHeader>
+        </div>
+      </Card>
     </Link>
   );
 }

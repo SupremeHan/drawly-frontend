@@ -7,8 +7,16 @@ export default function DrawlyLayout() {
 
   return (
     <div className="flex flex-col h-[100dvh]">
-      <div className="bg-blue-400 h-[50px] flex justify-between items-center pl-2 pr-2">
-        <h3>Drawly</h3>
+      <div className="border-2 border-b-[#4A4A4A] h-[50px] flex justify-between items-center p-2">
+        <div className="flex">
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/artbreeder-image-2024-09-13T12_44_10.357Z-8mBjsYlSqoNNlKesNxrOSd5LDCINDY.png"
+            alt="Drawly mascot"
+            width={30}
+            height={30}
+          />
+          <span className="ml-2 text-xl font-bold text-[#4A4A4A]">Drawly</span>
+        </div>
         <div className="flex gap-2 items-center">
           <h3>{user?.fullName}</h3>
           {/* <img src={user?.picture} alt={user?.fullName} width={30} />  TODO: Resolve issue with image 429 error code */}

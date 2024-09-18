@@ -1,9 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import environment from '../../enviroment';
+import { useAuthState } from './state/state';
+import { useEffect } from 'react';
 
 export default function AuthPage() {
+  const { user } = useAuthState((state) => state);
+  const navigate = useNavigate();
+
   const onGoolgeLogin = () => {
     window.location.href = `${environment.apiUrl}/auth/google`;
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate('/projects'); // If user is authenticated, redirect to dashboard
+    }
+  }, [user, navigate]);
 
   return (
     <div className="h-screen flex items-center">

@@ -15,7 +15,7 @@ export function Footer() {
             <span className="text-[#FF9F1C] font-bold">Drawly</span>
           </div>
           <p className="text-sm text-gray-500">
-            © 2023 Drawly. All rights reserved.
+            {`© ${new Date().getFullYear()} Drawly. All rights reserved.`}
           </p>
           <nav className="flex gap-4">
             <Link

@@ -15,7 +15,7 @@ export function AddProjectCard({ setProjects }: AddProjectCardProps) {
     <>
       <button
         onClick={() => onOpen()}
-        className="flex justify-center items-center w-[250px] p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+        className="flex justify-center items-center w-[280px] p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
       >
         <Plus />
       </button>

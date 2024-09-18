@@ -5,10 +5,11 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router/Routes';
 import { Toaster } from './components/ui/sonner';
+import environment from './enviroment';
 
 // TODO: Add config file so that you can import env
 createRoot(document.getElementById('root')!).render(
-  <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+  <GoogleOAuthProvider clientId={environment.googleOauthClient}>
     {/* <StrictMode> */}
     <RouterProvider router={router} />
     <Toaster />
