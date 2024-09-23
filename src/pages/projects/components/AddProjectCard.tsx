@@ -1,11 +1,9 @@
 import { Plus } from 'lucide-react';
 import { ProjectDialog } from './ProjectDialog';
 import { ProjectForm } from './ProjectForm';
-import { ProjectContext } from '../ProjectContext';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 export function AddProjectCard() {
-  const { setProjects } = useContext(ProjectContext);
   const [open, setOpen] = useState(false);
 
   return (
@@ -17,10 +15,7 @@ export function AddProjectCard() {
         <Plus />
       </button>
       <ProjectDialog title="Add a new project" open={open} setOpen={setOpen}>
-        <ProjectForm
-          onSubmitCb={() => setOpen(false)}
-          setProjects={setProjects}
-        />
+        <ProjectForm onSubmitCb={() => setOpen(false)} />
       </ProjectDialog>
     </>
   );

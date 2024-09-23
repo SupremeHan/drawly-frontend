@@ -7,9 +7,10 @@ import { ProjectType } from '../types';
 
 interface EditProjectFormProps {
   project: ProjectType;
+  onSubmitCb?: () => void;
 }
 
-export function EditProjectForm({ project }: EditProjectFormProps) {
+export function EditProjectForm({ project, onSubmitCb }: EditProjectFormProps) {
   const [projectName, setProjectName] = useState(project.name);
   const { setProjects } = useContext(ProjectContext);
 
@@ -31,12 +32,13 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
             return stateProject;
           }),
         );
+        onSubmitCb?.();
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <form onSubmit={handleEditSubmit}>
+    <form onSubmit={handleEditSubmit} className="flex flex-col gap-4">
       <Input
         type="text"
         placeholder="Project name"
@@ -46,7 +48,9 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
           setProjectName(e.target.value);
         }}
       />
-      <Button type="submit">Save</Button>
+      <Button type="submit" className="w-max">
+        Save
+      </Button>
     </form>
   );
 }

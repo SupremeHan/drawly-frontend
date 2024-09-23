@@ -2,24 +2,18 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import axiosConfig from '../../../config/axios';
 import { useAuthState } from '@/pages/auth/state/state';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { toast } from 'sonner';
-import { ProjectType } from '../types';
+import { ProjectContext } from '../ProjectContext';
 
 interface ProjectFormProps {
   onSubmitCb?: () => void;
-  setProjects: React.Dispatch<React.SetStateAction<ProjectType[]>>;
 }
 
-export function ProjectForm({ onSubmitCb, setProjects }: ProjectFormProps) {
-  const [name, setName] = useState('');
+export function ProjectForm({ onSubmitCb }: ProjectFormProps) {
+  const { setProjects } = useContext(ProjectContext);
   const { user } = useAuthState();
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-
-    setName(value);
-  };
+  const [name, setName] = useState('');
 
   const addProject = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,6 +27,7 @@ export function ProjectForm({ onSubmitCb, setProjects }: ProjectFormProps) {
       })
       .then((res) => {
         setProjects((prevVal) => [...prevVal, res.data]);
+        setName('');
         onSubmitCb?.();
         toast.success('Project added', {
           duration: 2000,
@@ -50,7 +45,8 @@ export function ProjectForm({ onSubmitCb, setProjects }: ProjectFormProps) {
       <Input
         type="text"
         placeholder="Project name"
-        onChange={handleInputChange}
+        onChange={(e) => setName(e.target.value)}
+        value={name}
       />
 
       <Button
