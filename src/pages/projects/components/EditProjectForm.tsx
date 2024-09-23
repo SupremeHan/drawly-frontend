@@ -4,6 +4,7 @@ import axiosConfig from '../../../config/axios';
 import { Button } from '@/components/ui/button';
 import { ProjectContext } from '../ProjectContext';
 import { ProjectType } from '../types';
+import { toast } from 'sonner';
 
 interface EditProjectFormProps {
   project: ProjectType;
@@ -33,8 +34,16 @@ export function EditProjectForm({ project, onSubmitCb }: EditProjectFormProps) {
           }),
         );
         onSubmitCb?.();
+        toast.success('Project name changed succesfully', {
+          duration: 2000,
+        });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast.error('Failed to change the project name', {
+          duration: 2000,
+        });
+      });
   };
 
   return (
@@ -48,7 +57,7 @@ export function EditProjectForm({ project, onSubmitCb }: EditProjectFormProps) {
           setProjectName(e.target.value);
         }}
       />
-      <Button type="submit" className="w-max">
+      <Button type="submit" className="w-max" disabled={!projectName.length}>
         Save
       </Button>
     </form>
