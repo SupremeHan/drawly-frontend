@@ -6,21 +6,22 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { useDialog } from '../state/state';
 import { PropsWithChildren } from 'react';
 
 interface ProjectDialogProps {
   title: string;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function ProjectDialog({
   title,
+  open,
+  setOpen,
   children,
 }: PropsWithChildren<ProjectDialogProps>) {
-  const { isOpen, onClose } = useDialog();
-
   return (
-    <Dialog open={isOpen} modal defaultOpen={isOpen} onOpenChange={onClose}>
+    <Dialog open={open} modal defaultOpen={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
