@@ -2,7 +2,7 @@ import { useDialog } from '../state/state';
 import { Plus } from 'lucide-react';
 import { ProjectDialog } from './ProjectDialog';
 import { ProjectForm } from './ProjectForm';
-import { ProjectType } from '../ProjectsPage';
+import { ProjectType } from '../types';
 
 interface AddProjectCardProps {
   setProjects: React.Dispatch<React.SetStateAction<ProjectType[]>>;

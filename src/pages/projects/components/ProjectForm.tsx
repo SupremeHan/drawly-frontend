@@ -3,8 +3,8 @@ import { Input } from '@/components/ui/input';
 import axiosConfig from '../../../config/axios';
 import { useAuthState } from '@/pages/auth/state/state';
 import { useState } from 'react';
-import { ProjectType } from '../ProjectsPage';
 import { toast } from 'sonner';
+import { ProjectType } from '../types';
 
 interface ProjectFormProps {
   onSubmitCb?: () => void;

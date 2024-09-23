@@ -17,8 +17,13 @@ import {
 import { EllipsisVertical } from 'lucide-react';
 import { useState } from 'react';
 import { EditProjectForm } from './EditProjectForm';
+import { ProjectType } from '../types';
 
-export function EditProjectDialog() {
+interface EditProjectDialogProps {
+  project: ProjectType;
+}
+
+export function EditProjectDialog({ project }: EditProjectDialogProps) {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
@@ -57,10 +62,11 @@ export function EditProjectDialog() {
           <DialogTitle>Edit your project</DialogTitle>
         </DialogHeader>
 
-        <EditProjectForm />
+        <EditProjectForm project={project} />
+
         <DialogDescription>Change the name of your project</DialogDescription>
         <DialogFooter>
-          <Button>Save</Button>
+          <Button type="submit">Save</Button>
           <DialogTrigger asChild>
             <Button
               onClick={(e) => {
